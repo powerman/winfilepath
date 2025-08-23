@@ -2,7 +2,7 @@
 
 // Copyright 2009 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
+// license that can be found in the LICENSE-go file.
 
 // Package winfilepath implements utility routines for manipulating filename paths
 // in a way compatible with the target operating system-defined file paths.
