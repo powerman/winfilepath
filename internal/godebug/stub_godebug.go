@@ -5,17 +5,17 @@
 // Stub godebug package for winfilepath tests
 package godebug
 
-// New creates a new debug setting stub
+// New creates a new debug setting stub.
 func New(name string) *Setting {
 	return &Setting{name: name}
 }
 
-// Setting represents a debug setting stub
+// Setting represents a debug setting stub.
 type Setting struct {
 	name string
 }
 
-// Value returns empty string stub
+// Value returns empty string stub.
 func (s *Setting) Value() string {
 	return ""
 }

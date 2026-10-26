@@ -6,7 +6,7 @@ package winsyscall
 
 import "os"
 
-// FullPath stub for non-Windows platforms
+// FullPath stub for non-Windows platforms.
 func FullPath(path string) (string, error) {
 	// Simple implementation that mimics Windows FullPath behavior
 	// Note: This requires importing the parent winfilepath package,

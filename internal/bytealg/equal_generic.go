@@ -4,6 +4,8 @@
 
 package bytealg
 
+import "bytes"
+
 // Equal reports whether a and b
 // are the same length and contain the same bytes.
 // A nil argument is equivalent to an empty slice.
@@ -14,5 +16,5 @@ package bytealg
 func Equal(a, b []byte) bool {
 	// Neither cmd/compile nor gccgo allocates for these string conversions.
 	// There is a test for this in package bytes.
-	return string(a) == string(b)
+	return bytes.Equal(a, b)
 }

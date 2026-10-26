@@ -12,7 +12,7 @@ import (
 	"testing"
 )
 
-// MustHaveSymlink checks if symlinks are supported
+// MustHaveSymlink checks if symlinks are supported.
 func MustHaveSymlink(t testing.TB) {
 	if runtime.GOOS == "plan9" {
 		t.Helper()
@@ -22,30 +22,30 @@ func MustHaveSymlink(t testing.TB) {
 	// In a real implementation, this would do proper testing
 }
 
-// SkipFlaky skips flaky tests
+// SkipFlaky skips flaky tests.
 func SkipFlaky(t *testing.T, issue int) {
 	// Skip flaky tests
 	t.Skip("skipping flaky test")
 }
 
-// CleanCmdEnv cleans command environment
+// CleanCmdEnv cleans command environment.
 func CleanCmdEnv(env []string) []string {
 	return env
 }
 
-// MustHaveExecPath checks if the executable path is available
+// MustHaveExecPath checks if the executable path is available.
 func MustHaveExecPath(t testing.TB, exe string) {
 	t.Helper()
 	// Simplified stub - assume all executables are available
 }
 
-// Command is a stub for exec.Command in test environment
+// Command is a stub for exec.Command in test environment.
 func Command(t testing.TB, name string, arg ...string) *exec.Cmd {
 	t.Helper()
 	return exec.Command(name, arg...)
 }
 
-// GOROOT returns GOROOT path
+// GOROOT returns GOROOT path.
 func GOROOT(t testing.TB) string {
 	t.Helper()
 	goroot := os.Getenv("GOROOT")

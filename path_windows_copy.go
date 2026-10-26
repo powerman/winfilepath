@@ -36,7 +36,7 @@ func splitList(path string) []string {
 	list := []string{}
 	start := 0
 	quo := false
-	for i := 0; i < len(path); i++ {
+	for i := range len(path) {
 		switch c := path[i]; {
 		case c == '"':
 			quo = !quo

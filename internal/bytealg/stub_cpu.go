@@ -5,7 +5,7 @@
 // Stub implementation of internal/cpu for bytealg compatibility
 package bytealg
 
-// Minimal cpu features struct to satisfy bytealg requirements
+// Minimal cpu features struct to satisfy bytealg requirements.
 var cpu struct {
 	X86 struct {
 		HasSSE42  bool

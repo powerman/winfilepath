@@ -9,14 +9,14 @@ package filepathlite
 
 import "syscall"
 
-// UTF16PtrFromString stub for non-Windows platforms
+// UTF16PtrFromString stub for non-Windows platforms.
 func UTF16PtrFromString(s string) (*uint16, error) {
 	// This is a simplified stub that just returns an error
 	// The real implementation would convert string to UTF16
 	return nil, syscall.EINVAL
 }
 
-// RtlIsDosDeviceName_U stub - simplified logic for non-Windows
+// RtlIsDosDeviceName_U stub - simplified logic for non-Windows.
 func RtlIsDosDeviceName_U(p *uint16) uint32 {
 	// For simplified implementation, just return 0 (not a DOS device)
 	// This will make reserved names with extensions be considered reserved

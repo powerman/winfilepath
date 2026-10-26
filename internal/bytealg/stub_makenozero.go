@@ -4,7 +4,7 @@
 
 package bytealg
 
-// MakeNoZero implementation for generic platform
+// MakeNoZero implementation for generic platform.
 func MakeNoZero(n int) []byte {
 	return make([]byte, n)
 }
