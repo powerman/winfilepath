@@ -68,7 +68,7 @@ func IndexRabinKarp[T string | []byte](s, sep T) int {
 	hashss, pow := HashStr(sep)
 	n := len(sep)
 	var h uint32
-	for i := 0; i < n; i++ {
+	for i := range n {
 		h = h*PrimeRK + uint32(s[i])
 	}
 	if h == hashss && string(s[:n]) == string(sep) {

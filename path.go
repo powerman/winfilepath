@@ -240,7 +240,7 @@ func Rel(basepath, targpath string) (string, error) {
 		}
 		buf := make([]byte, size)
 		n := copy(buf, "..")
-		for i := 0; i < seps; i++ {
+		for range seps {
 			buf[n] = Separator
 			copy(buf[n+1:], "..")
 			n += 3
