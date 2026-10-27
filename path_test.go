@@ -808,7 +808,7 @@ func TestWalkSkipAllOnFile(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err := os.MkdirAll(filepath.Join(td, "dir2"), 0o755)
+	err = os.MkdirAll(filepath.Join(td, "dir2"), 0o755)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -923,19 +923,19 @@ func TestWalkSymlinkRoot(t *testing.T) {
 	touch(t, filepath.Join(dir, "foo"))
 
 	link := filepath.Join(td, "link")
-	err := os.Symlink("dir", link)
+	err = os.Symlink("dir", link)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	abslink := filepath.Join(td, "abslink")
-	err := os.Symlink(dir, abslink)
+	err = os.Symlink(dir, abslink)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	linklink := filepath.Join(td, "linklink")
-	err := os.Symlink("link", linklink)
+	err = os.Symlink("link", linklink)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -1890,21 +1890,21 @@ func TestEvalSymlinksAboveRootChdir(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err := os.Symlink(subdir, "c")
+	err = os.Symlink(subdir, "c")
 	if err != nil {
 		t.Fatal(err)
 	}
-	err := os.WriteFile(filepath.Join(subdir, "file"), nil, 0o666)
+	err = os.WriteFile(filepath.Join(subdir, "file"), nil, 0o666)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	subdir = filepath.Join("d", "e", "f")
-	err := os.MkdirAll(subdir, 0o777)
+	err = os.MkdirAll(subdir, 0o777)
 	if err != nil {
 		t.Fatal(err)
 	}
-	err := os.Chdir(subdir)
+	err = os.Chdir(subdir)
 	if err != nil {
 		t.Fatal(err)
 	}

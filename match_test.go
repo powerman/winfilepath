@@ -330,7 +330,7 @@ func TestWindowsGlob(t *testing.T) {
 		// test C:\*Documents and Settings\...
 		p = tmpDir
 		p = strings.Replace(p, `:\`, `:\*`, 1)
-		err := test.globAbs(tmpDir, p)
+		err = test.globAbs(tmpDir, p)
 		if err != nil {
 			t.Error(err)
 		}
@@ -339,7 +339,7 @@ func TestWindowsGlob(t *testing.T) {
 		p = strings.Replace(p, `:\`, `:`, 1)
 		p = strings.Replace(p, `\`, `*\`, 1)
 		p = strings.Replace(p, `:`, `:\`, 1)
-		err := test.globAbs(tmpDir, p)
+		err = test.globAbs(tmpDir, p)
 		if err != nil {
 			t.Error(err)
 		}
