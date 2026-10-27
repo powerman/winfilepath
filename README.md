@@ -11,7 +11,7 @@
 ![macOS | amd64 arm64](https://img.shields.io/badge/macOS-amd64%20arm64-royalblue)
 ![Windows | amd64 arm64](https://img.shields.io/badge/Windows-amd64%20arm64-royalblue)
 
-Most of the code is copied from Go 1.25.0 path/filepath package
+Most of the code is copied from Go 1.27.3 path/filepath package
 with minimal modification needed to make it work on all OSes in same way as on Windows,
 except for actual file access functions which panics on non-Windows.
 

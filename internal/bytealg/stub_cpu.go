@@ -23,4 +23,7 @@ var cpu struct { //nolint:gochecknoglobals,unused // Required to compile vendore
 	PPC64 struct {
 		IsPOWER9 bool
 	}
+	RISCV64 struct {
+		HasV bool
+	}
 }

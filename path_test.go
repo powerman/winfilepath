@@ -94,12 +94,16 @@ var wincleantests = []PathTest{
 	{`c:\b:\..\..\..\d`, `c:\d`},
 	{`\`, `\`},
 	{`/`, `\`},
-	{`\\i\..\c$`, `\\i\..\c$`},
-	{`\\i\..\i\c$`, `\\i\..\i\c$`},
-	{`\\i\..\I\c$`, `\\i\..\I\c$`},
+	{`\\i\..\c$`, `\c$`},
+	{`\\i\..\i\c$`, `\i\c$`},
+	{`\\i\..\I\c$`, `\I\c$`},
+	{`\\..\..\a`, `\a`},
+	{`//../../a`, `\a`},
 	{`\\host\share\foo\..\bar`, `\\host\share\bar`},
 	{`//host/share/foo/../baz`, `\\host\share\baz`},
 	{`\\host\share\foo\..\..\..\..\bar`, `\\host\share\bar`},
+	{`\\?\UNC\host\share\foo\..\..\..\..\bar`, `\\?\UNC\host\share\bar`},
+	{`\??\UNC\host\share\foo\..\..\..\..\bar`, `\??\UNC\host\share\bar`},
 	{`\\.\C:\a\..\..\..\..\bar`, `\\.\C:\bar`},
 	{`\\.\C:\\\\a`, `\\.\C:\a`},
 	{`\\a\b\..\c`, `\\a\b\c`},
@@ -981,7 +985,6 @@ func TestWalkSymlinkRoot(t *testing.T) {
 			buggyGOOS: []string{"darwin", "ios"}, // https://go.dev/issue/59586
 		},
 	} {
-		tt := tt
 		t.Run(tt.desc, func(t *testing.T) {
 			var walked []string
 			err := filepath.Walk(tt.root, func(path string, info fs.FileInfo, err error) error {
@@ -1131,6 +1134,11 @@ var winisabstests = []IsAbsTest{
 	{`\\host\share\`, true},
 	{`\\host\share\foo`, true},
 	{`//host/share/foo/bar`, true},
+	{`\\..\..\a`, false},
+	{`//../../a`, false},
+	{`\\i\..\c$`, false},
+	{`//?/../x`, false},
+	{`//./../x`, false},
 	{`\\?\a\b\c`, true},
 	{`\??\a\b\c`, true},
 }
@@ -1581,6 +1589,7 @@ var reltests = []RelTests{
 	{"/../../a/b", "/../../a/b/c/d", "c/d"},
 	{".", "a/b", "a/b"},
 	{".", "..", ".."},
+	{"", "../../.", "../.."},
 
 	// can't do purely lexically
 	{"..", ".", "err"},
@@ -1654,6 +1663,15 @@ var volumenametests = []VolumeNameTest{
 	{`//host/share//foo///bar////baz`, `\\host\share`},
 	{`\\host\share\foo\..\bar`, `\\host\share`},
 	{`//host/share/foo/../bar`, `\\host\share`},
+	{`\\..\..\a`, ``},
+	{`//../../a`, ``},
+	{`\\i\..\c$`, ``},
+	{`//./UNC/../share`, ``},
+	{`//?/../x`, ``},
+	{`//./../x`, ``},
+	{`//.../share`, `\\...\share`},
+	{`//host/...`, `\\host\...`},
+	{`//?/..x`, `\\?\..x`},
 	{`//.`, `\\.`},
 	{`//./`, `\\.\`},
 	{`//./NUL`, `\\.\NUL`},
@@ -1668,6 +1686,8 @@ var volumenametests = []VolumeNameTest{
 	{`//./C:/`, `\\.\C:`},
 	{`//./C:/a/b/c`, `\\.\C:`},
 	{`//./UNC/host/share/a/b/c`, `\\.\UNC\host\share`},
+	{`//?/UNC/host/share/a/b/c`, `\\?\UNC\host\share`},
+	{`/??/UNC/host/share/a/b/c`, `\??\UNC\host\share`},
 	{`//./UNC/host`, `\\.\UNC\host`},
 	{`//./UNC/host\`, `\\.\UNC\host\`},
 	{`//./UNC`, `\\.\UNC`},
