@@ -31,7 +31,7 @@ const PrimeRK = 16777619
 // factor for use in Rabin-Karp algorithm.
 func HashStr[T string | []byte](sep T) (uint32, uint32) {
 	hash := uint32(0)
-	for i := range len(sep) {
+	for i := 0; i < len(sep); i++ {
 		hash = hash*PrimeRK + uint32(sep[i])
 	}
 	var pow, sq uint32 = 1, PrimeRK
@@ -68,7 +68,7 @@ func IndexRabinKarp[T string | []byte](s, sep T) int {
 	hashss, pow := HashStr(sep)
 	n := len(sep)
 	var h uint32
-	for i := range n {
+	for i := 0; i < n; i++ {
 		h = h*PrimeRK + uint32(s[i])
 	}
 	if h == hashss && string(s[:n]) == string(sep) {

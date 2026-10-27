@@ -18,7 +18,7 @@ func IndexByte(b []byte, c byte) int {
 }
 
 func IndexByteString(s string, c byte) int {
-	for i := range len(s) {
+	for i := 0; i < len(s); i++ {
 		if s[i] == c {
 			return i
 		}

@@ -5,7 +5,6 @@
 package winfilepath_test
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"runtime"
@@ -102,7 +101,7 @@ func TestMatch(t *testing.T) {
 			s = Clean(s)
 		}
 		ok, err := Match(pattern, s)
-		if ok != tt.match || !errors.Is(err, tt.err) {
+		if ok != tt.match || err != tt.err {
 			t.Errorf("Match(%#q, %#q) = %v, %q want %v, %q", pattern, s, ok, errp(err), tt.match, errp(tt.err))
 		}
 	}
@@ -157,7 +156,7 @@ func TestCVE202230632(t *testing.T) {
 	// large number of separators (more than 4,000,000). There is now a limit
 	// of 10,000.
 	_, err := Glob("/*" + strings.Repeat("/", 10001))
-	if !errors.Is(err, ErrBadPattern) {
+	if err != ErrBadPattern {
 		t.Fatalf("Glob returned err=%v, want ErrBadPattern", err)
 	}
 }
@@ -168,7 +167,7 @@ func TestGlobError(t *testing.T) {
 	}
 	bad := []string{`[]`, `nonexist/[]`}
 	for _, pattern := range bad {
-		if _, err := Glob(pattern); !errors.Is(err, ErrBadPattern) {
+		if _, err := Glob(pattern); err != ErrBadPattern {
 			t.Errorf("Glob(%#q) returned err=%v, want ErrBadPattern", pattern, err)
 		}
 	}
@@ -323,15 +322,13 @@ func TestWindowsGlob(t *testing.T) {
 	// test absolute paths
 	for _, test := range tests {
 		var p string
-		err := test.globAbs(tmpDir, tmpDir)
-		if err != nil {
+		if err := test.globAbs(tmpDir, tmpDir); err != nil {
 			t.Error(err)
 		}
 		// test C:\*Documents and Settings\...
 		p = tmpDir
 		p = strings.Replace(p, `:\`, `:\*`, 1)
-		err = test.globAbs(tmpDir, p)
-		if err != nil {
+		if err := test.globAbs(tmpDir, p); err != nil {
 			t.Error(err)
 		}
 		// test C:\Documents and Settings*\...
@@ -339,8 +336,7 @@ func TestWindowsGlob(t *testing.T) {
 		p = strings.Replace(p, `:\`, `:`, 1)
 		p = strings.Replace(p, `\`, `*\`, 1)
 		p = strings.Replace(p, `:`, `:\`, 1)
-		err = test.globAbs(tmpDir, p)
-		if err != nil {
+		if err := test.globAbs(tmpDir, p); err != nil {
 			t.Error(err)
 		}
 	}

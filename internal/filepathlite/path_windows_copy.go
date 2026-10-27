@@ -52,7 +52,7 @@ func isLocal(path string) bool {
 }
 
 func localize(path string) (string, error) {
-	for i := range len(path) {
+	for i := 0; i < len(path); i++ {
 		switch path[i] {
 		case ':', '\\', 0:
 			return "", errInvalidPath
@@ -163,7 +163,7 @@ func equalFold(a, b string) bool {
 	if len(a) != len(b) {
 		return false
 	}
-	for i := range len(a) {
+	for i := 0; i < len(a); i++ {
 		if toUpper(a[i]) != toUpper(b[i]) {
 			return false
 		}
@@ -256,7 +256,7 @@ func pathHasPrefixFold(s, prefix string) bool {
 	if len(s) < len(prefix) {
 		return false
 	}
-	for i := range len(prefix) {
+	for i := 0; i < len(prefix); i++ {
 		if IsPathSeparator(prefix[i]) {
 			if !IsPathSeparator(s[i]) {
 				return false

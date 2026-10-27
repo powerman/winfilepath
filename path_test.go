@@ -754,8 +754,7 @@ func TestWalkSkipDirOnFile(t *testing.T) {
 	}
 	td := t.TempDir()
 
-	err := os.MkdirAll(filepath.Join(td, "dir"), 0o755)
-	if err != nil {
+	if err := os.MkdirAll(filepath.Join(td, "dir"), 0o755); err != nil {
 		t.Fatal(err)
 	}
 	touch(t, filepath.Join(td, "dir/foo1"))
@@ -804,12 +803,10 @@ func TestWalkSkipAllOnFile(t *testing.T) {
 	}
 	td := t.TempDir()
 
-	err := os.MkdirAll(filepath.Join(td, "dir", "subdir"), 0o755)
-	if err != nil {
+	if err := os.MkdirAll(filepath.Join(td, "dir", "subdir"), 0o755); err != nil {
 		t.Fatal(err)
 	}
-	err = os.MkdirAll(filepath.Join(td, "dir2"), 0o755)
-	if err != nil {
+	if err := os.MkdirAll(filepath.Join(td, "dir2"), 0o755); err != nil {
 		t.Fatal(err)
 	}
 
@@ -841,8 +838,7 @@ func TestWalkSkipAllOnFile(t *testing.T) {
 	check := func(t *testing.T, walk func(root string) error, root string) {
 		t.Helper()
 		remainingWereSkipped = true
-		err := walk(root)
-		if err != nil {
+		if err := walk(root); err != nil {
 			t.Fatal(err)
 		}
 		if !remainingWereSkipped {
@@ -916,27 +912,23 @@ func TestWalkSymlinkRoot(t *testing.T) {
 
 	td := t.TempDir()
 	dir := filepath.Join(td, "dir")
-	err := os.MkdirAll(filepath.Join(td, "dir"), 0o755)
-	if err != nil {
+	if err := os.MkdirAll(filepath.Join(td, "dir"), 0o755); err != nil {
 		t.Fatal(err)
 	}
 	touch(t, filepath.Join(dir, "foo"))
 
 	link := filepath.Join(td, "link")
-	err = os.Symlink("dir", link)
-	if err != nil {
+	if err := os.Symlink("dir", link); err != nil {
 		t.Fatal(err)
 	}
 
 	abslink := filepath.Join(td, "abslink")
-	err = os.Symlink(dir, abslink)
-	if err != nil {
+	if err := os.Symlink(dir, abslink); err != nil {
 		t.Fatal(err)
 	}
 
 	linklink := filepath.Join(td, "linklink")
-	err = os.Symlink("link", linklink)
-	if err != nil {
+	if err := os.Symlink("link", linklink); err != nil {
 		t.Fatal(err)
 	}
 
@@ -989,6 +981,7 @@ func TestWalkSymlinkRoot(t *testing.T) {
 			buggyGOOS: []string{"darwin", "ios"}, // https://go.dev/issue/59586
 		},
 	} {
+		tt := tt
 		t.Run(tt.desc, func(t *testing.T) {
 			var walked []string
 			err := filepath.Walk(tt.root, func(path string, info fs.FileInfo, err error) error {
@@ -1817,7 +1810,7 @@ func TestIssue29372(t *testing.T) {
 
 	for i, test := range tests {
 		_, err = filepath.EvalSymlinks(test)
-		if !errors.Is(err, syscall.ENOTDIR) {
+		if err != syscall.ENOTDIR {
 			t.Fatalf("test#%d: want %q, got %q", i, syscall.ENOTDIR, err)
 		}
 	}
@@ -1853,11 +1846,11 @@ func TestEvalSymlinksAboveRoot(t *testing.T) {
 	vol := filepath.VolumeName(evalTmpDir)
 	c := strings.Count(evalTmpDir[len(vol):], string(os.PathSeparator))
 	var dd []string
-	for range c + 2 {
+	for i := 0; i < c+2; i++ {
 		dd = append(dd, "..")
 	}
 
-	wantSuffix := "a" + string(os.PathSeparator) + "file"
+	wantSuffix := strings.Join([]string{"a", "file"}, string(os.PathSeparator))
 
 	// Try different numbers of "..".
 	for _, i := range []int{c, c + 1, c + 2} {
@@ -1886,26 +1879,21 @@ func TestEvalSymlinksAboveRootChdir(t *testing.T) {
 	t.Chdir(t.TempDir())
 
 	subdir := filepath.Join("a", "b")
-	err := os.MkdirAll(subdir, 0o777)
-	if err != nil {
+	if err := os.MkdirAll(subdir, 0o777); err != nil {
 		t.Fatal(err)
 	}
-	err = os.Symlink(subdir, "c")
-	if err != nil {
+	if err := os.Symlink(subdir, "c"); err != nil {
 		t.Fatal(err)
 	}
-	err = os.WriteFile(filepath.Join(subdir, "file"), nil, 0o666)
-	if err != nil {
+	if err := os.WriteFile(filepath.Join(subdir, "file"), nil, 0o666); err != nil {
 		t.Fatal(err)
 	}
 
 	subdir = filepath.Join("d", "e", "f")
-	err = os.MkdirAll(subdir, 0o777)
-	if err != nil {
+	if err := os.MkdirAll(subdir, 0o777); err != nil {
 		t.Fatal(err)
 	}
-	err = os.Chdir(subdir)
-	if err != nil {
+	if err := os.Chdir(subdir); err != nil {
 		t.Fatal(err)
 	}
 
@@ -1926,8 +1914,7 @@ func TestIssue51617(t *testing.T) {
 	}
 	dir := t.TempDir()
 	for _, sub := range []string{"a", filepath.Join("a", "bad"), filepath.Join("a", "next")} {
-		err := os.Mkdir(filepath.Join(dir, sub), 0o755)
-		if err != nil {
+		if err := os.Mkdir(filepath.Join(dir, sub), 0o755); err != nil {
 			t.Fatal(err)
 		}
 	}
