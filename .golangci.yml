@@ -466,6 +466,22 @@ linters:
         text: should have a godoc \("(String|Error|Format|(Marshal|Unmarshal)(Text|JSON))"\)
     paths:
       - \.[\w-]+\.go$ # Use this pattern to name auto-generated files.
+      # Vendored (see .gitattributes), keep upstream code unchanged.
+      - ^export_test\.go$
+      - ^match\.go$
+      - ^match_test\.go$
+      - ^path\.go$
+      - ^path_test\.go$
+      - ^path_windows_copy\.go$
+      - ^path_windows_test\.go$
+      - ^internal/bytealg/bytealg\.go$
+      - ^internal/bytealg/count_generic\.go$
+      - ^internal/bytealg/equal_generic\.go$
+      - ^internal/bytealg/index_generic\.go$
+      - ^internal/bytealg/indexbyte_generic\.go$
+      - ^internal/filepathlite/path\.go$
+      - ^internal/filepathlite/path_windows_copy\.go$
+      - ^internal/stringslite/strings\.go$
 formatters:
   enable:
     - gci
@@ -495,6 +511,22 @@ formatters:
     generated: strict
     paths:
       - \.[\w-]+\.go$ # Use this pattern to name auto-generated files.
+      # Vendored (see .gitattributes), keep upstream code unchanged.
+      - ^export_test\.go$
+      - ^match\.go$
+      - ^match_test\.go$
+      - ^path\.go$
+      - ^path_test\.go$
+      - ^path_windows_copy\.go$
+      - ^path_windows_test\.go$
+      - ^internal/bytealg/bytealg\.go$
+      - ^internal/bytealg/count_generic\.go$
+      - ^internal/bytealg/equal_generic\.go$
+      - ^internal/bytealg/index_generic\.go$
+      - ^internal/bytealg/indexbyte_generic\.go$
+      - ^internal/filepathlite/path\.go$
+      - ^internal/filepathlite/path_windows_copy\.go$
+      - ^internal/stringslite/strings\.go$
 issues:
   max-issues-per-linter: 0
   max-same-issues: 0

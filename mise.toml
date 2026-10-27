@@ -113,6 +113,10 @@ wait_for = ['fmt:yaml']
 sources = ['**/*.yml', '**/*.yaml']
 run = "git ls-files -z -co --exclude-standard '*.yml' '*.yaml' | xargs -0 -r yamlfmt -lint"
 
+[tasks.'lint:go']
+description = 'Lint Go files'
+run = 'golangci-lint run'
+
 [tasks.'lint:go-compile-windows']
 description = 'Check Go test compiles on Windows'
 run = 'GOOS=windows go test -c -o /dev/null ./...'
