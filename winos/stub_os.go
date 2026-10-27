@@ -2,8 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE-go file.
 
-// Windows path separator functions for non-Windows platforms
-
+// Package winos provides Windows path separator functions for non-Windows platforms.
 package winos
 
 // IsPathSeparator reports whether c is a directory separator character.

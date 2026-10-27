@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE-go file.
 
-// Stub godebug package for winfilepath tests
+// Package godebug is a stub of internal/godebug for winfilepath tests.
 package godebug
 
 // New creates a new debug setting stub.
@@ -16,6 +16,6 @@ type Setting struct {
 }
 
 // Value returns empty string stub.
-func (s *Setting) Value() string {
+func (*Setting) Value() string {
 	return ""
 }

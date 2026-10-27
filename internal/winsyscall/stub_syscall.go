@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE-go file.
 
+// Package winsyscall provides a stub of Windows-specific syscall helpers for non-Windows platforms.
 package winsyscall
 
 import "os"
@@ -12,7 +13,7 @@ func FullPath(path string) (string, error) {
 	// Note: This requires importing the parent winfilepath package,
 	// but since this is a stub that panics on filesystem access anyway,
 	// we'll use a basic implementation
-	if len(path) > 0 && (path[0] == '\\' || len(path) > 1 && path[1] == ':') {
+	if path != "" && (path[0] == '\\' || len(path) > 1 && path[1] == ':') {
 		// Looks like absolute Windows path
 		return path, nil
 	}

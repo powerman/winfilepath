@@ -2,11 +2,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE-go file.
 
-// Stub implementation of internal/cpu for bytealg compatibility
+// Package bytealg is a subset of internal/bytealg with a stub of internal/cpu.
 package bytealg
 
 // Minimal cpu features struct to satisfy bytealg requirements.
-var cpu struct {
+// It is referenced only by unused offset constants in the vendored bytealg.go.
+var cpu struct { //nolint:gochecknoglobals,unused // Required to compile vendored bytealg.go.
 	X86 struct {
 		HasSSE42  bool
 		HasAVX2   bool
