@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-10-28
+
+### 🚀 Added
+
+- Support Go 1.26 filepath behavior by @powerman in [b50aa2a]
+
+### 🔔 Changed
+
+- Require Go 1.26 by @powerman in [bb25a09]
+- Sync vendored code with Go 1.27.3 by @powerman in [33ec4ca]
+
+### 🐛 Fixed
+
+- **(tests)** Reuse existing err variable by @powerman in [648f3c8]
+
+### 📦️ Dependencies
+
+- **(deps)** Upgrade go and golangci-lint by @powerman in [bd97bdb]
+- **(deps)** Upgrade go and golangci-lint by @powerman in [5c3fd6d]
+- **(deps)** Mise up by @powerman in [060da98]
+
+[0.2.0]: https://github.com/powerman/winfilepath/compare/v0.1.1..v0.2.0
+[bd97bdb]: https://github.com/powerman/winfilepath/commit/bd97bdb1e706fe500d77a754e59881592cc37804
+[648f3c8]: https://github.com/powerman/winfilepath/commit/648f3c8114ee9b679abfef27a37025321a4d8086
+[5c3fd6d]: https://github.com/powerman/winfilepath/commit/5c3fd6d91168ec7033cb4eff17897c3bd432e9e3
+[bb25a09]: https://github.com/powerman/winfilepath/commit/bb25a090c6268a3a091185913ccac27a68000e31
+[33ec4ca]: https://github.com/powerman/winfilepath/commit/33ec4ca33f16190d634f0c20a866a7a1981d3ff7
+[b50aa2a]: https://github.com/powerman/winfilepath/commit/b50aa2a0cfd8db1cba173739d920b1dd23ce7fdb
+[060da98]: https://github.com/powerman/winfilepath/commit/060da98d9114a07ae74618e910aec48ce69c745d
+
 ## [0.1.1] - 2026-04-07
 
 [0.1.1]: https://github.com/powerman/winfilepath/compare/%40%7B10year%7D..v0.1.1
