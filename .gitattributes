@@ -12,6 +12,7 @@ go.sum binary
 /match.go vendored
 /match_test.go vendored
 /path.go vendored
+/path_go126_test.go vendored
 /path_test.go vendored
 /path_windows_copy.go vendored
 /path_windows_test.go vendored
@@ -22,4 +23,5 @@ go.sum binary
 /internal/bytealg/indexbyte_generic.go vendored
 /internal/filepathlite/path.go vendored
 /internal/filepathlite/path_windows_copy.go vendored
+/internal/filepathlite/path_windows_copy_go126.go vendored
 /internal/stringslite/strings.go vendored

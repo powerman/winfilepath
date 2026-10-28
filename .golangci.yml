@@ -471,6 +471,7 @@ linters:
       - ^match\.go$
       - ^match_test\.go$
       - ^path\.go$
+      - ^path_go126_test\.go$
       - ^path_test\.go$
       - ^path_windows_copy\.go$
       - ^path_windows_test\.go$
@@ -481,6 +482,7 @@ linters:
       - ^internal/bytealg/indexbyte_generic\.go$
       - ^internal/filepathlite/path\.go$
       - ^internal/filepathlite/path_windows_copy\.go$
+      - ^internal/filepathlite/path_windows_copy_go126\.go$
       - ^internal/stringslite/strings\.go$
 formatters:
   enable:
@@ -516,6 +518,7 @@ formatters:
       - ^match\.go$
       - ^match_test\.go$
       - ^path\.go$
+      - ^path_go126_test\.go$
       - ^path_test\.go$
       - ^path_windows_copy\.go$
       - ^path_windows_test\.go$
@@ -526,6 +529,7 @@ formatters:
       - ^internal/bytealg/indexbyte_generic\.go$
       - ^internal/filepathlite/path\.go$
       - ^internal/filepathlite/path_windows_copy\.go$
+      - ^internal/filepathlite/path_windows_copy_go126\.go$
       - ^internal/stringslite/strings\.go$
 issues:
   max-issues-per-linter: 0

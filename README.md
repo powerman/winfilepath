@@ -15,5 +15,11 @@ Most of the code is copied from Go 1.27.3 path/filepath package
 with minimal modification needed to make it work on all OSes in same way as on Windows,
 except for actual file access functions which panics on non-Windows.
 
+On Windows it forwards to the standard path/filepath package,
+so its behavior depends on the Go version used to build it.
+To match this on non-Windows OSes,
+files which behave differently in the previous Go version are also copied from it
+into `*_go126.go` files and selected by build tags.
+
 It is mostly useful to process Windows file paths on non-Windows OSes,
 e.g. test your code which runs on Windows on your native OS.

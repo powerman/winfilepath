@@ -39,12 +39,16 @@ jobs:
   native:
     strategy:
       matrix:
-        include:
-          - {os: ubuntu-24.04-arm} # Linux ARM64
-          - {os: macos-15-intel} # macOS AMD64
-          - {os: macos-latest} # macOS ARM64
-          - {os: windows-latest} # Windows AMD64
-          - {os: windows-11-arm} # Windows ARM64
+        os:
+          - ubuntu-24.04-arm # Linux ARM64
+          - macos-15-intel # macOS AMD64
+          - macos-latest # macOS ARM64
+          - windows-latest # Windows AMD64
+          - windows-11-arm # Windows ARM64
+        # On Windows the package uses standard path/filepath, whose behavior depends on Go version.
+        go:
+          - go.mod # Minimal supported version.
+          - stable
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
 
@@ -53,7 +57,8 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version-file: 'go.mod'
+          go-version-file: ${{ matrix.go == 'go.mod' && 'go.mod' || '' }}
+          go-version: ${{ matrix.go != 'go.mod' && matrix.go || '' }}
 
       - run: go test -timeout=60s -race ./...
         if: matrix.os != 'windows-11-arm'
