@@ -62,7 +62,8 @@ jobs:
 
       - run: go test -timeout=60s -race ./...
         if: matrix.os != 'windows-11-arm'
-      - run: go test -timeout=60s ./...
+      # VHD-based tests are slow on this runner: ~55s on success, so 60s is not enough.
+      - run: go test -timeout=3m ./...
         if: matrix.os == 'windows-11-arm'
 
   # Testing on available docker QEMU platforms (Linux only).
